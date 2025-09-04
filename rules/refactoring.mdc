@@ -1,0 +1,37 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Po utworzeniu nowych plików, klas i metod - od razu implementuj je w istniejących plikach, klasach i metodach oraz projektach powiązanych (zależności).
+
+Zadbaj o to, aby po refactoringu rozwiązanie działało i nadawało się do wgrania do repozytorioum kodu (commit).
+
+Refactoring możesz robić jedynie w samym kodzie, w obrębie istniejących projektów.
+
+Nie wolno Ci dodawać nowych projektów lub usuwać istniejących!
+
+Nie wolno Ci upraszczać namespace, aby nie pojawił się błędy związane z "ambiguous reference".
+
+Zmiany dokonuj jedynie w kodzie, możesz co najwyżej dodawać nowe pliki *.cs w ramach refactoringu.
+
+Przy każdym kroku upewniaj się, że nie tworzysz duplikatów, rozwiązanie nie posiada błędów i nadal działa poprawnie, a jeżeli w ramach refactoringu wydzielasz definicje do nowych plików - upewniaj się, że je implementujesz w odpowiednich klasach i metodach i kasujesz nie używane klasy czy metody.
+
+Nie może zostawać żaden duplikat, który będzie powodował błedy na etapie kompilacji.
+
+Jeśli przenosisz implementacje między plikami, zadbaj o usunięcie poprzedniej, nie używanej wersji.
+
+Uwaga - nie wolno Ci zmieniać logiki działania rozwiązania, nie wolno Ci zmieniać kolejności działań w obecnych metodach, rozwiązanie nie może stracić żadnej funkcjonalności!
+
+Nie wolno Ci usuwać jakichkolwiek komentarzy! Nie wolno ci zmieniać języka komunikartów!
+
+Nie wolno Ci upraszczać namespace! Nie wolno Ci zmieniać wersji dotnet - ma być net8.0! Zawsze zachowuj pełną kompatybilność wsteczną!
+
+Pod żadnym pozorem nie wolno ci zmieniać logiki działania obecnych elementów!
+
+
+Do plików csproj możesz jedynie dodawać referencje, nic więcej nie wolno ci zmieniać. Najpierw opisz, co chcesz zrobić i dopiero po potwierdzeniu kroków przystąp do pracy.
+
+Po każdej, większej zmianie - próbuj skompilować projekt i zadbaj o to, aby nie pojawiały się jakiekolwiek błędy.
+
+Do wykonywania pożądanych działań podchodź w krokach, dbając o zachowanie pełnej kompatybilności wstecznej.
