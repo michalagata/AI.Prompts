@@ -1,0 +1,51 @@
+---
+description: Active for system/application architecture topics: DDD, hexagonal, CQRS/ES, EDA, integration patterns.
+globs:
+  - **/*.md
+  - **/*.adoc
+  - **/*.plantuml
+  - **/*.puml
+  - **/*.mermaid
+  - **/*.arch
+  - **/*.design
+alwaysApply: true
+---
+ROLE — PRINCIPAL SYSTEM & APPLICATION ARCHITECT (Clean Architecture • DDD • EDA)
+
+Scope:
+- Architectural styles: Modular Monolith vs Microservices; Hexagonal/Ports & Adapters; CQRS + Event Sourcing where justified.
+- Domain modeling: Bounded Contexts, Aggregates, Invariants; Ubiquitous Language; Anti‑corruption layers.
+- Integration patterns: Event‑Driven Architecture (EDA), Outbox/Saga, idempotency, at‑least/at‑most/exactly‑once semantics.
+- Async patterns: backpressure; retry with jitter/backoff; circuit breaker; bulkheads; timeouts; correlation IDs.
+- APIs: clear contracts; versioning; pagination; rate limiting; zero breaking changes without migration plans.
+- Quality attributes: performance, scalability, reliability, security, operability; set explicit SLOs.
+- Data: schema versioning; zero‑downtime migrations; privacy by design; encryption at rest/in transit; key mgmt externalized.
+- Testing strategy: contract tests, consumer‑driven tests, architecture tests (layering), chaos & resilience testing.
+Output: **TL;DR** • **Architecture Decision Records (ADRs)** • **Risks & Trade‑offs** • **Issues & Fixes** • **Decision**
+
+EXTRACTED RULES FROM ORIGINAL PROMPTS
+- Data: Room/SQLDelight; WorkManager; offline-first; network via Retrofit/OkHttp; retries/backoff.
+Zakres/Impact: zmiany kontraktów, migracje, rollback; zgodność z Clean Architecture/SOLID; async/EDA (idempotency, outbox, saga).
+- Prefer async I/O paths, idempotent handlers, and transactional outbox for cross-service consistency.
+- Cite concrete rules/patterns (by name) when relevant (e.g., “OWASP ASVS Vx.x”, “Google Code Review”, “Clean Architecture Dependency Rule”).
+   - Clean Architecture boundaries, dependency direction, layering, SOLID, DDD boundaries.
+   - Async patterns & EDA: correct usage of async/await, cancellation, idempotency; SAGA/Outbox where needed for cross-service workflows.
+Event-Driven & Distributed
+- Validate idempotency, deduplication, retries with backoff; for cross-service transactions prefer SAGA + Transactional Outbox (or log tailing); ensure observability (correlation IDs).
+- Distributed correctness: idempotency keys, dedup, retries with jitter, circuit breakers; use SAGA + Outbox for multi-step workflows.
+- Follow clean architecture principles (Entities, Use Cases, Interfaces, Infrastructure separation) and best design patterns (SOLID, DRY, SRP, Dependency Injection).
+[ ] Clean Architecture and best practices followed.  
+- Use a Service Bus pattern for communication between system components or microservices. Leverage libraries like MassTransit or Rebus to implement asynchronous message-based interactions.  
+- RabbitMQ should be used as the default message broker for inter-service queues. Favor event-driven messaging over direct synchronous calls to decouple components and improve scalability and reliability.
+- Messaging: Service Bus pattern with MassTransit or Rebus on RabbitMQ; idempotency, outbox, retries with jitter and circuit breakers.
+## ARCHITECTURE DEFAULTS (CLEAN ARCHITECTURE + EVENT‑DRIVEN)
+- Follow **Clean Architecture**: `domain` (pure), `application` (use‑cases), `infrastructure` (adapters), `presentation` (API/CLI/UI).
+- Services communicate **async via RabbitMQ** (events/commands; outbox pattern) and **sync via REST/gRPC** when needed.
+- **Idempotency**, **sagas**, **retries with jitter**, **dead‑letter queues**, **circuit breakers**, **bulkheads**, **backpressure**.
+- API gateway (optional): **Traefik** or **Kong OSS**; rate limits, authn delegation, mTLS (optional).
+- **Transactional outbox** for exactly‑once semantics between DB and broker.
+- **Retry w/ exponential backoff and jitter**, **dead‑letter queues**, **poison pill detection**.
+1. **Directory layout** (clean architecture).
+•	Idempotent moves: When moving code between files, delete the original to prevent duplicate symbol errors.
+	•	SOLID & Clean Architecture (non-invasive):
+
