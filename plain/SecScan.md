@@ -50,3 +50,5 @@ Example: - [ ] [CWE-89] Replace query string concatenation with Prepared Stateme
 Generate a ready-to-copy prompt, optimized for coding assistants (e.g., Copilot, Claude, ChatGPT). This prompt must instruct the AI to take your report and the original code, and generate fully patched versions of the files.
 The prompt format must look exactly like this:
 "Act as a Senior Security Developer. Analyze my original code and the security audit report below. Your task is to refactor the code to eliminate all listed vulnerabilities. Do not remove any business logic, and add inline comments explaining each security-related modification. [Audit Report Below]"
+
+Save the report under name [application name from repository]_SECURITY_REPORT.md in markdown format.
